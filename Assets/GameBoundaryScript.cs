@@ -6,6 +6,6 @@ public class GameBoundaryScript : MonoBehaviour
 {
     private void OnTriggerExit(Collider other)
     {
-        Destroy(other.gameObject);
+       Destroy(other.gameObject);
     }
 }

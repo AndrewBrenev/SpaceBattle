@@ -8,20 +8,25 @@ public class EniterScript : MonoBehaviour
     public GameObject asteroidType2;
     public GameObject asteroidType3;
 
-    public float minDelay, maxDelay;
+    public GameObject enemyShip;
+
+    public float minDelayAsteroid, maxDelayAsteroid;
+    public float minDelayEnemy, maxDelayEnemy;
 
     private float nextAsteroidLaunch;
+    private float nextEnemyLaunch;
 
     // Update is called once per frame
     void Update()
     {
-        if(!GameControllerScript.getInstanse().getIsGameStarted())
+        if (!GameControllerScript.getInstanse().getIsGameStarted())
         {
             return;
         }
+        
         if (Time.time > nextAsteroidLaunch)
         {
-            nextAsteroidLaunch = Time.time + Random.Range(minDelay, maxDelay);
+            nextAsteroidLaunch = Time.time + Random.Range(minDelayAsteroid, maxDelayAsteroid);
 
             var asteroidId = Random.Range(0, 3);
 
@@ -39,6 +44,14 @@ public class EniterScript : MonoBehaviour
             }
 
         }
+
+        
+        if (Time.time > nextEnemyLaunch)
+        {
+            nextEnemyLaunch = Time.time + Random.Range(minDelayEnemy, maxDelayEnemy);
+            generateObject(enemyShip);
+        }
+        
     }
 
     private GameObject generateObject(GameObject g_object)

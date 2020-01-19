@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 
 public class PlayerScript : MonoBehaviour
@@ -11,7 +12,11 @@ public class PlayerScript : MonoBehaviour
     Rigidbody ship;
 
     public GameObject LaserGun;
+    public GameObject smallLeftGun;
+    public GameObject smallRightGun;
+
     public GameObject LaserShot;
+    public GameObject smallLaserShot;
 
 
     public float speed;
@@ -20,8 +25,12 @@ public class PlayerScript : MonoBehaviour
     public float xMin, xMax, zMin,zMax;
 
     public float shotDelay;
-
     private float nextShotLaunch;
+
+    private float nextSmllShotLaunch;
+
+    private float timeToDeath;
+    private bool death = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +46,12 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
+        if (death && Time.time > timeToDeath)
+        {
+            death = false;
+            GameControllerScript.getInstanse().stopTheGame();
+            
+        }
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -54,21 +69,29 @@ public class PlayerScript : MonoBehaviour
             nextShotLaunch = Time.time + shotDelay;
         }
 
-        if (Input.GetButton("Fire2") && Time.time > nextShotLaunch)
+        if (Input.GetButton("Fire2") && Time.time > nextSmllShotLaunch)
         {
-            Instantiate(LaserShot, LaserGun.transform.position, Quaternion.identity);
-            nextShotLaunch = Time.time + shotDelay;
+            Quaternion leftRotation = Quaternion.Euler(0, -30.0f, 0);
+            Quaternion rightRotation = Quaternion.Euler(0, 30.0f, 0);
+
+           Instantiate(smallLaserShot, smallLeftGun.transform.position, leftRotation);
+           Instantiate(smallLaserShot, smallRightGun.transform.position, rightRotation);
+            
+
+            nextSmllShotLaunch = Time.time + (shotDelay * 4);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "GameBoundary")
+        if (other.tag != "GameBoundary" && GameControllerScript.getInstanse().getIsGameStarted())
         {
-            if (other.tag == "Player")
-            {
-                Instantiate(playerExplosion, transform.position, Quaternion.identity);
-            }
+            
+            death = true;
+            timeToDeath = Time.time + shotDelay;
+            Instantiate(playerExplosion, transform.position, Quaternion.identity);
+            
+
         }
     }
 }

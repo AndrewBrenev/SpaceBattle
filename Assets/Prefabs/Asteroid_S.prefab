@@ -42,7 +42,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7290880064820404565}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.69
@@ -57,7 +57,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularSpeed: 20
-  minSpeed: 30
-  maxSpeed: 60
+  minSpeed: 60
+  maxSpeed: 100
   explosionPay: 1
   shotsToKill: 1
   asteroidExplosion: {fileID: 7028431626508448009, guid: 23222181789ae4d4d8028ab501dfcf4d,

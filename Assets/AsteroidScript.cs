@@ -37,7 +37,7 @@ public class AsteroidScript : MonoBehaviour
                     shotsToKill--;
                     Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
                     Destroy(gameObject);
-                    Destroy(other.gameObject);
+                  //  Destroy(other.gameObject);
                 }
                 else
                 {
