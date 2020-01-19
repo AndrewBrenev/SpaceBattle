@@ -5,11 +5,11 @@ using UnityEngine;
 public class AsteroidScript : MonoBehaviour
 {
     public float angularSpeed;
-    public float minSpeed,maxSpeed; 
-
+    public float minSpeed,maxSpeed;
+    public int explosionPay;
+    public int shotsToKill = 1;
     public GameObject asteroidExplosion;
-    public GameObject playerExplosion;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,22 +23,36 @@ public class AsteroidScript : MonoBehaviour
     {
         if (other.tag != "GameBoundary")
         {
-            if (other.tag == "Player")
+            if (other.tag == "Asteroid")
             {
-                Instantiate(playerExplosion, other.transform.position, Quaternion.identity);
             }
             else
             {
-                GameControllerScript.getInstanse().increaseScore(2);
+                if (shotsToKill == 1)
+                {
+                    if (other.tag == "PlayerShot")
+                    {
+                        GameControllerScript.getInstanse().increaseScore(explosionPay);
+                    }
+                    shotsToKill--;
+                    Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    if (other.tag == "PlayerShot" || other.tag == "EnemyShot")
+                    {
+                        Destroy(other.gameObject);
+                    }
+                    if (other.tag == "Player")
+                    {
+                        Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
+                        Destroy(gameObject);
+                    }
+                    shotsToKill--;
+                }
             }
-
-          
-
-            Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-
-           
         }
     }
 }

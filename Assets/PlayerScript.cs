@@ -6,11 +6,13 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 
-    
+    public GameObject playerExplosion;
+
     Rigidbody ship;
 
     public GameObject LaserGun;
     public GameObject LaserShot;
+
 
     public float speed;
     public float tilt;
@@ -50,6 +52,23 @@ public class PlayerScript : MonoBehaviour
         {
             Instantiate(LaserShot, LaserGun.transform.position, Quaternion.identity);
             nextShotLaunch = Time.time + shotDelay;
+        }
+
+        if (Input.GetButton("Fire2") && Time.time > nextShotLaunch)
+        {
+            Instantiate(LaserShot, LaserGun.transform.position, Quaternion.identity);
+            nextShotLaunch = Time.time + shotDelay;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag != "GameBoundary")
+        {
+            if (other.tag == "Player")
+            {
+                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+            }
         }
     }
 }

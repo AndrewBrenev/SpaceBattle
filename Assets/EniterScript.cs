@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EniterScript : MonoBehaviour
 {
-    public GameObject initializedObject;
+    public GameObject asteroidType1;
+    public GameObject asteroidType2;
+    public GameObject asteroidType3;
+
     public float minDelay, maxDelay;
 
     private float nextAsteroidLaunch;
@@ -20,12 +23,31 @@ public class EniterScript : MonoBehaviour
         {
             nextAsteroidLaunch = Time.time + Random.Range(minDelay, maxDelay);
 
-            float xSize = transform.localScale.x;
-            float xPosition = Random.Range(-xSize / 2, xSize / 2);
-            float zPosition = transform.position.z;
+            var asteroidId = Random.Range(0, 3);
 
-            Instantiate(initializedObject, new Vector3(xPosition, 0, zPosition), Quaternion.identity);
+            switch (asteroidId)
+            {
+               case 0:
+                    generateObject(asteroidType1);
+                break;
+                case 1:
+                    generateObject(asteroidType2);
+                    break;
+                case 2:
+                    generateObject(asteroidType3);
+                    break;
+            }
 
         }
+    }
+
+    private GameObject generateObject(GameObject g_object)
+    {
+        float xSize = transform.localScale.x;
+        float xPosition = Random.Range(-xSize / 2, xSize / 2);
+        float zPosition = transform.position.z;
+
+        var obj = Instantiate(g_object, new Vector3(xPosition, 0, zPosition), Quaternion.identity);
+        return obj;
     }
 }
