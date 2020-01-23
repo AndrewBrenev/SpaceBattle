@@ -10,6 +10,7 @@ TagManager:
   - PlayerShot
   - EnemyShot
   - Enemy
+  - Torpedo
   layers:
   - Default
   - TransparentFX

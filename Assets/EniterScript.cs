@@ -8,13 +8,17 @@ public class EniterScript : MonoBehaviour
     public GameObject asteroidType2;
     public GameObject asteroidType3;
 
+    public GameObject torpedo;
+
     public GameObject enemyShip;
 
     public float minDelayAsteroid, maxDelayAsteroid;
     public float minDelayEnemy, maxDelayEnemy;
+    public float minDelayTorpedo, maxDelayTorpedo;
 
     private float nextAsteroidLaunch;
     private float nextEnemyLaunch;
+    private float nextTorpedoLaunch;
 
     // Update is called once per frame
     void Update()
@@ -51,7 +55,12 @@ public class EniterScript : MonoBehaviour
             nextEnemyLaunch = Time.time + Random.Range(minDelayEnemy, maxDelayEnemy);
             generateObject(enemyShip);
         }
-        
+
+        if (Time.time > nextTorpedoLaunch)
+        {
+            nextTorpedoLaunch = Time.time + Random.Range(minDelayTorpedo, maxDelayTorpedo);
+            generateObject(torpedo);
+        }
     }
 
     private GameObject generateObject(GameObject g_object)

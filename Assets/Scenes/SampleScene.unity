@@ -250,7 +250,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8, y: -3, z: 6, w: 1.3e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -511,7 +511,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.26171875, y: 0.05859375, z: -0.06640625, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -803,12 +803,15 @@ MonoBehaviour:
     type: 3}
   asteroidType3: {fileID: 5891982603743279110, guid: 7460732cf2fdfce4a952cbddab85f7c3,
     type: 3}
+  torpedo: {fileID: 9018286387223728858, guid: 38f4587b3a4eaec47a0bc0243041d52c, type: 3}
   enemyShip: {fileID: 4775673759019395568, guid: eb70b50e348789f4d9631017392b8934,
     type: 3}
   minDelayAsteroid: 0.5
   maxDelayAsteroid: 1.5
   minDelayEnemy: 2
   maxDelayEnemy: 2.5
+  minDelayTorpedo: 3
+  maxDelayTorpedo: 6
 --- !u!23 &999751518
 MeshRenderer:
   m_ObjectHideFlags: 0
