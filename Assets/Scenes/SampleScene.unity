@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 229174631}
   - component: {fileID: 229174630}
   m_Layer: 0
-  m_Name: SpaceLiht
+  m_Name: SpaceLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 450075252}
   - component: {fileID: 450075251}
   m_Layer: 5
-  m_Name: maxScore
+  m_Name: statisticsLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: 359}
-  m_SizeDelta: {x: 350, y: 60}
+  m_AnchoredPosition: {x: -94, y: 183}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450075251
 MonoBehaviour:
@@ -329,14 +329,20 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 180
+    m_MaxSize: 25
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Max Score : '
+  m_Text: 'Max Score : 12
+
+    Asteroid Destroid: 45
+
+    Torpedos Exploided : 0
+
+    Enemies killed:13'
 --- !u!222 &450075252
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -738,7 +744,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score :'
+  m_Text: 'Score : 0'
 --- !u!222 &968006806
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1200,7 +1206,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 46ec4ed652af74f7d9a680ac07e9f8a2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.23
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1314,7 +1320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 968006805}
-  maxScoreText: {fileID: 450075251}
+  statisticsLabel: {fileID: 450075251}
   startScreen: {fileID: 1757126425}
   startButton: {fileID: 1623046090}
   finishScreen: {fileID: 1054242276}

@@ -23,7 +23,7 @@ public class AsteroidScript : MonoBehaviour
     {
         if (other.tag != "GameBoundary")
         {
-            if (other.tag == "Asteroid")
+            if (other.tag == "Asteroid" || other.tag == "Torpedo" )
             {
             }
             else
@@ -33,11 +33,17 @@ public class AsteroidScript : MonoBehaviour
                     if (other.tag == "PlayerShot")
                     {
                         GameControllerScript.getInstanse().increaseScore(explosionPay);
+
+                        if (gameObject.tag == "Asteroid")
+                            GameControllerScript.getInstanse().increaseAsteroidExplosionCount();
+                        else
+                            GameControllerScript.getInstanse().increaseTorpedosExplosionCount();
+
                     }
+                    
                     shotsToKill--;
                     Instantiate(asteroidExplosion, transform.position, Quaternion.identity);
                     Destroy(gameObject);
-                  //  Destroy(other.gameObject);
                 }
                 else
                 {

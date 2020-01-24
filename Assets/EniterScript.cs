@@ -27,7 +27,7 @@ public class EniterScript : MonoBehaviour
         {
             return;
         }
-        
+
         if (Time.time > nextAsteroidLaunch)
         {
             nextAsteroidLaunch = Time.time + Random.Range(minDelayAsteroid, maxDelayAsteroid);
@@ -36,9 +36,9 @@ public class EniterScript : MonoBehaviour
 
             switch (asteroidId)
             {
-               case 0:
+                case 0:
                     generateObject(asteroidType1);
-                break;
+                    break;
                 case 1:
                     generateObject(asteroidType2);
                     break;
@@ -49,7 +49,7 @@ public class EniterScript : MonoBehaviour
 
         }
 
-        
+
         if (Time.time > nextEnemyLaunch)
         {
             nextEnemyLaunch = Time.time + Random.Range(minDelayEnemy, maxDelayEnemy);

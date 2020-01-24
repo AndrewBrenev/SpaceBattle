@@ -13,6 +13,9 @@ public class EnemyScript : MonoBehaviour
     
     public float shotDelay;
     private float nextShotLaunch;
+    private int shotsToKill = 2;
+
+   
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,6 @@ public class EnemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    
     void Update()
     {
         if (!GameControllerScript.getInstanse().getIsGameStarted())
@@ -35,9 +37,37 @@ public class EnemyScript : MonoBehaviour
             nextShotLaunch = Time.time + shotDelay;
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-       
+        if (other.tag != "GameBoundary" && GameControllerScript.getInstanse().getIsGameStarted())
+        {
+            if (shotsToKill == 1)
+            {
+                if (other.tag == "PlayerShot")
+                {
+                    GameControllerScript.getInstanse().increaseScore(10);
+                    GameControllerScript.getInstanse().increaseEnemiesKilledCount();
+                }
+                shotsToKill--;
+                Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            else
+            {
+                if (other.tag == "PlayerShot")
+                {
+                    Destroy(other.gameObject);
+                    shotsToKill--;
+                }
+                if (other.tag == "Player" || other.tag == "Asteroid")
+                {
+                    Instantiate(playerExplosion, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                    shotsToKill--;
+                }
+            }
+
+        }
     }
 }

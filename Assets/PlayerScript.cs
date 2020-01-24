@@ -32,12 +32,24 @@ public class PlayerScript : MonoBehaviour
     private float timeToDeath;
     private bool death = false;
 
+
+    private static PlayerScript instanse;
+    public static PlayerScript getInstanse()
+    {
+        return instanse;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         ship = GetComponent<Rigidbody>();
+        instanse = this;
     }
 
+    public void setStartPosition()
+    {
+        ship.position = new Vector3(0, 0, -50);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -90,8 +102,6 @@ public class PlayerScript : MonoBehaviour
             death = true;
             timeToDeath = Time.time + shotDelay;
             Instantiate(playerExplosion, transform.position, Quaternion.identity);
-            
-
         }
     }
 }
